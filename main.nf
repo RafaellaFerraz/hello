@@ -1,6 +1,7 @@
 #!/usr/bin/env nextflow
 
 params.greeting = 'Hello world!'
+params.sleep = 30
 greeting_ch = Channel.of(params.greeting)
 
 process SPLITLETTERS {
@@ -23,7 +24,8 @@ process CONVERTTOUPPER {
     stdout
 
     """
-    cat $y | tr '[a-z]' '[A-Z]' | rev $y
+    sleep ${params.sleep}
+    cat $y | tr '[a-z]' '[A-Z]'
     """
 }
 
